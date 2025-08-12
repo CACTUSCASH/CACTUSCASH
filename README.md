@@ -24,4 +24,4 @@ These projects are all available in my repositories and are designed to showcase
 
 ## 🌍 Connect
 
-I'm always eager to connect with fellow tech enthusiasts and potential employers. If you'd like to collaborate or just chat about cybersecurity, reach out via email (you@example.com) or connect with me on [LinkedIn](https://www.linkedin.com/in/yourprofile/). Feel free to check out my repositories for more projects and learning resources.
+I'm always eager to connect with fellow tech enthusiasts and potential employers. If you'd like to collaborate or just chat about cybersecurity, reach out via email saoodwilliams321@gmail.com or connect with me on https://www.linkedin.com/in/sa%E2%80%99ood-williams-17bb96378/ . Feel free to check out my repositories for more projects and learning resources.
