@@ -11,6 +11,8 @@ I'm a cybersecurity student based in Cape Town, South Africa, currently explorin
 - **Password Strength Checker** – evaluates the strength of passwords based on length and character variety.
 - **Hash Cracker** – performs a dictionary attack on SHA‑256 hashes to demonstrate password cracking techniques.
 - **Packet Sniffer** – captures and summarizes Ethernet frames using raw sockets, showing MAC/IP addresses, TTL and protocol information.
+- - **Ping Sweep** – scans an IPv4 subnet using ICMP echo requests to identify live hosts.
+- **Directory Bruteforcer** – brute forces directories on a web server using a wordlist and threads to discover hidden paths.
 
 These projects are all available in my repositories and are designed to showcase fundamental cybersecurity techniques. Feel free to explore the code and suggest improvements!
 
