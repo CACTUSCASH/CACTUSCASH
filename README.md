@@ -7,6 +7,10 @@ I'm a cybersecurity student based in Cape Town, South Africa, currently explorin
 - **Port Scanner** – a simple TCP port scanner to enumerate open services on a network host. Great for practising socket programming and understanding network fundamentals.
 - **Password Manager** – a minimal command-line password manager that demonstrates key derivation, encryption and secure storage concepts.
 - **File Integrity Monitor** – generates and verifies SHA-256 checksums for directories to detect tampering or unexpected modifications.
+- **Subdomain Enumerator** – enumerates subdomains of a given domain using DNS queries and customizable wordlists for reconnaissance.
+- **Password Strength Checker** – evaluates the strength of passwords based on length and character variety.
+- **Hash Cracker** – performs a dictionary attack on SHA‑256 hashes to demonstrate password cracking techniques.
+- **Packet Sniffer** – captures and summarizes Ethernet frames using raw sockets, showing MAC/IP addresses, TTL and protocol information.
 
 These projects are all available in my repositories and are designed to showcase fundamental cybersecurity techniques. Feel free to explore the code and suggest improvements!
 
