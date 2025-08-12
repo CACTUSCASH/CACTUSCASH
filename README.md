@@ -1,6 +1,6 @@
 Hi, I'm Saood Williams 👋 👋
 
-I'm a cybersecurity student based in Cape Town, South Africa, currently exploring the fascinating world of offensive and defensive security. I enjoy building tools that help me understand how systems work—and how they can be protected. When I'm not studying packet captures or reading about the latest vulnerabilities, you'll find me writing Python scripts or tinkering with Linux.
+I'm a cybersecurity student based in Cape Town, South Africa, currently exploring the fascinating world of offensive and defensive security. I enjoy building tools that help me understand how systems work and how they can be protected. When I'm not studying packet captures or reading about the latest vulnerabilities, you'll find me writing Python scripts or tinkering with Linux.
 
 ## 🛠️ Projects
 
