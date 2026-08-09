@@ -7,11 +7,5 @@
         "repo": "affaan-m/ECC"
       }
     }
-  },
-  "enabledPlugins": [
-    {
-      "marketplace": "ecc",
-      "plugin": "ecc"
-    }
-  ]
+  }
 }

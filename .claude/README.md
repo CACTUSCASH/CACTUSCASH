@@ -1,51 +1,48 @@
 # Claude Code configuration
 
-## Goal: all of ECC's skills available in every dispatched session, from anywhere
+All of [ECC](https://github.com/affaan-m/ECC)'s (`affaan-m/ECC`, MIT) agents,
+commands, and skills are vendored into this repo so they load automatically in
+any Claude Code session that opens it — including cloud sessions you dispatch —
+with no install step, plugin, or settings toggle required.
 
-[ECC](https://github.com/affaan-m/ECC) (`affaan-m/ECC`) ships 284 skills, 67
-agents, and 94 commands. There are two scopes, and they use different
-mechanisms.
+## What's here
 
-### 1. Everywhere / any repo (the real "from anywhere") — cloud environment setup script
+| Path              | Count | Loads as                                             |
+| ----------------- | ----- | ---------------------------------------------------- |
+| `.claude/skills/` | 284   | Model-invoked skills (auto-suggested by task)        |
+| `.claude/agents/` | 67    | Subagents (available to the Task tool / `@`-dispatch)|
+| `.claude/commands/`| 94   | Slash commands                                       |
 
-For ECC to be available the moment you dispatch **any** cloud session, in
-**any** repo, the install has to run in your **cloud environment's setup
-script**. That setup script:
+Claude Code loads skills, agents, and commands committed under a repo's
+`.claude/` directory automatically, in both local and cloud sessions. That is
+why these are vendored directly rather than installed as a plugin: cloud
+sessions don't have the interactive `/plugin` installer, so vendoring is the
+reliable way to get everything "at your disposal when you dispatch."
 
-- runs before Claude Code launches (so the skills exist when Claude enumerates
-  them), on every surface — web, `claude --cloud`, mobile app, routines,
-  Claude Tag;
-- is cached after the first run, so later sessions start fast;
-- lives in your **Claude Code web settings**, not in this repo.
+## Provenance & license
 
-**This cannot be set from inside a session / from the repo — you configure it
-in the web UI.** Steps:
+- Source: https://github.com/affaan-m/ECC
+- Vendored commit: see `.claude/.ecc-source-commit`
+- License: MIT — `ECC-LICENSE` (Copyright (c) 2026 Affaan Mustafa)
 
-1. Go to **claude.ai/code**.
-2. Open your environment settings (**Cloud environments** → hover your
-   environment → the settings gear; the **Default** environment works).
-3. Paste the contents of [`scripts/ecc-cloud-setup.sh`](../scripts/ecc-cloud-setup.sh)
-   into the **Setup script** field and save.
+To update to a newer ECC, re-copy `skills/`, `agents/`, and `commands/` from a
+fresh clone and update `.ecc-source-commit`.
 
-That script `git clone`s ECC and copies its `skills/`, `agents/`, `commands/`,
-and `rules/` into `~/.claude/`. From then on every dispatched session has them
-available immediately. (It deliberately skips ECC's `hooks/`, which
-auto-execute; see the script's comments to include them.)
+## Deliberately excluded: hooks
 
-`scripts/ecc-cloud-setup.sh` is committed here only as a reference copy —
-committing it does **not** activate it; the web-UI paste is what activates it.
+ECC's `hooks/` are **not** vendored. Hooks auto-execute third-party code on
+every session/tool event; skills, agents, and commands are only invoked on
+demand. If you want ECC's hooks too, copy its `hooks/` and wire them per ECC's
+docs — but review https://github.com/affaan-m/ECC/tree/main/hooks first.
 
-### 2. This repo only — `.claude/settings.json`
+## Every repo, not just this one
 
-`settings.json` registers the ECC marketplace and lists the `ecc` plugin in
-`enabledPlugins`. This is the documented way to declare a plugin for sessions
-that open this repo. Caveat: in **cloud** sessions the interactive `/plugin`
-install flow isn't available, so this path is reliable mainly for **local /
-terminal** use of this repo; for cloud, use the setup script in section 1.
+The above makes ECC available whenever you dispatch a session **on this repo**.
+To have it in **every** repo/session, install it once via your cloud
+environment's setup script — paste `scripts/ecc-cloud-setup.sh` into the Setup
+script field at claude.ai/code (see that file's header for steps).
 
-### Heads up
+## `settings.json`
 
-ECC is third-party code reached via an external link. Review
-https://github.com/affaan-m/ECC (its `skills/`, `hooks/`, `scripts/`, and
-installer) so you know what you're enabling — especially before opting to
-install its auto-executing hooks.
+Registers the ECC marketplace under `extraKnownMarketplaces` for optional
+local `/plugin` use. Not required for the vendored skills/agents/commands above.
