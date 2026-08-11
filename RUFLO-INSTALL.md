@@ -12,7 +12,7 @@ Licensed MIT — see [`RUFLO-LICENSE`](./RUFLO-LICENSE).
 
 | Location | Contents |
 |----------|----------|
-| `.claude/skills/`   | 39 skills — auto-loaded by Claude Code in this repo |
+| `.claude/skills/`   | 38 skills — auto-loaded by Claude Code in this repo |
 | `.claude/agents/`   | 108 subagent definitions |
 | `.claude/commands/` | 168 slash commands |
 | `plugins/`          | 38 Ruflo plugins (the full marketplace) |
@@ -93,7 +93,15 @@ Full docs: `.claude-plugin/docs/INSTALLATION.md` and https://github.com/ruvnet/r
 
 ## Notes
 
-- Only the standalone, portable content was vendored. Ruflo's own
-  `settings.json`, `mcp.json`, statusline scripts, and hooks were intentionally
+- Only the standalone, portable content was vendored. Ruflo's own top-level
+  `settings.json`, `mcp.json`, and statusline scripts were intentionally
   omitted so they don't fail in environments without the Ruflo CLI.
+- Enabling all 35 plugins is safe without the Ruflo CLI. Only 2 of them
+  (`ruflo-core`, `ruflo-cost-tracker`) ship hooks, and their shim
+  (`scripts/ruflo-hook.cjs`) wraps every call in try/catch and **always exits
+  0**, specifically so a missing CLI never blocks a turn or surfaces an error.
+  Without the CLI those hooks are simply no-ops.
+- The marketplace is fetched from GitHub by ref. `install.sh` derives the ref
+  from the clone it runs out of, so it works from a feature branch and from the
+  default branch after merge — no manual editing needed.
 - To update, re-copy these directories from the upstream repo.

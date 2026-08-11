@@ -26,20 +26,34 @@ echo "    agents:   $(find "$REPO_ROOT/.claude/agents" -name '*.md' | wc -l | tr
 echo "    commands: $(find "$REPO_ROOT/.claude/commands" -name '*.md' | wc -l | tr -d ' ')"
 
 # 2. Merge marketplace + enabledPlugins into ~/.claude/settings.json
+#    The marketplace is fetched from GitHub by ref. We derive the ref from the
+#    clone this script is running out of, so it is correct whether the content
+#    lives on a feature branch or has been merged to the default branch.
 SETTINGS="$CLAUDE_HOME/settings.json"
 SNIPPET="$REPO_ROOT/global-install/settings.snippet.json"
 [ -f "$SETTINGS" ] || echo '{}' > "$SETTINGS"
 
-python3 - "$SETTINGS" "$SNIPPET" <<'PY'
+REF="$(git -C "$REPO_ROOT" rev-parse --abbrev-ref HEAD 2>/dev/null || echo main)"
+[ "$REF" = "HEAD" ] && REF="$(git -C "$REPO_ROOT" rev-parse HEAD)"
+echo "    marketplace ref: $REF"
+
+python3 - "$SETTINGS" "$SNIPPET" "$REF" <<'PY'
 import json, sys
-settings_path, snippet_path = sys.argv[1], sys.argv[2]
+settings_path, snippet_path, ref = sys.argv[1], sys.argv[2], sys.argv[3]
 try:
     cur = json.load(open(settings_path))
     if not isinstance(cur, dict): cur = {}
 except Exception:
     cur = {}
 snip = json.load(open(snippet_path))
-cur.setdefault("extraKnownMarketplaces", {}).update(snip["extraKnownMarketplaces"])
+mkts = snip["extraKnownMarketplaces"]
+for entry in mkts.values():
+    # pin to the ref we were installed from; drop once merged to default branch
+    if ref and ref != "main":
+        entry["source"]["ref"] = ref
+    else:
+        entry["source"].pop("ref", None)
+cur.setdefault("extraKnownMarketplaces", {}).update(mkts)
 cur.setdefault("enabledPlugins", {}).update(snip["enabledPlugins"])
 json.dump(cur, open(settings_path, "w"), indent=2)
 open(settings_path, "a").write("\n")
@@ -50,7 +64,7 @@ cat <<'EOF'
 
 ==> Done. Skills, agents, and commands are now global on this machine.
 
-   Restart Claude Code (or Cowork). The 39 skills / 108 agents / 168 commands
+   Restart Claude Code (or Cowork). The 38 skills / 108 agents / 168 commands
    are available in every project — no per-repo setup needed.
 
    Plugins: enabledPlugins is registered, but plugins fetch from GitHub the
@@ -61,6 +75,6 @@ cat <<'EOF'
    NOTE: Some plugins ship hooks that call the Ruflo CLI. For those to run
    (not just the skills/agents), install the runtime once:
        npx ruflo@latest init wizard
-   If you don't want plugin hooks, delete the "enabledPlugins" block from
-   ~/.claude/settings.json — the skills/agents/commands work without it.
+   Hooks from ruflo-core/ruflo-cost-tracker are no-ops without it (the shim
+   always exits 0), so nothing breaks either way.
 EOF
