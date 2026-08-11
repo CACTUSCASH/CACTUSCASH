@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "extraKnownMarketplaces": {
+    "ruflo": {
+      "source": {
+        "source": "github",
+        "repo": "cactuscash/cactuscash"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "ruflo-core@ruflo": true,
+    "ruflo-swarm@ruflo": true,
+    "ruflo-loop-workers@ruflo": true,
+    "ruflo-security-audit@ruflo": true,
+    "ruflo-rag-memory@ruflo": true,
+    "ruflo-testgen@ruflo": true,
+    "ruflo-docs@ruflo": true,
+    "ruflo-autopilot@ruflo": true,
+    "ruflo-intelligence@ruflo": true,
+    "ruflo-agentdb@ruflo": true,
+    "ruflo-aidefence@ruflo": true,
+    "ruflo-browser@ruflo": true,
+    "ruflo-jujutsu@ruflo": true,
+    "ruflo-agent@ruflo": true,
+    "ruflo-workflows@ruflo": true,
+    "ruflo-daa@ruflo": true,
+    "ruflo-ruvllm@ruflo": true,
+    "ruflo-rvf@ruflo": true,
+    "ruflo-plugin-creator@ruflo": true,
+    "ruflo-goals@ruflo": true,
+    "ruflo-adr@ruflo": true,
+    "ruflo-cost-tracker@ruflo": true,
+    "ruflo-ddd@ruflo": true,
+    "ruflo-federation@ruflo": true,
+    "ruflo-graph-intelligence@ruflo": true,
+    "ruflo-iot-cognitum@ruflo": true,
+    "ruflo-knowledge-graph@ruflo": true,
+    "ruflo-market-data@ruflo": true,
+    "ruflo-migrations@ruflo": true,
+    "ruflo-neural-trader@ruflo": true,
+    "ruflo-observability@ruflo": true,
+    "ruflo-ruvector@ruflo": true,
+    "ruflo-sparc@ruflo": true,
+    "ruflo-metaharness@ruflo": true,
+    "ruflo-arena@ruflo": true
+  }
+}

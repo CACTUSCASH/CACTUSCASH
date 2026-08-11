@@ -34,6 +34,46 @@ install plugins, run inside Claude Code from the repo root:
 Install any other plugin the same way (names in `.claude-plugin/marketplace.json`),
 or install everything by repeating `/plugin install <name>@ruflo` for each.
 
+## Making it global (available in every project / Cowork / anywhere)
+
+The install above is scoped to *this* repo. To make the skills, agents, and
+commands available in **every** Claude Code project on a machine — including
+**Claude Cowork desktop**, which reads the same `~/.claude` directory — run the
+one-command installer once per machine, from the repo root:
+
+```
+git clone https://github.com/cactuscash/cactuscash
+cd cactuscash
+bash global-install/install.sh
+```
+
+That copies everything into user-level `~/.claude/skills`, `~/.claude/agents`,
+and `~/.claude/commands` (auto-discovered in all projects) and merges the plugin
+marketplace + `enabledPlugins` into `~/.claude/settings.json`. Restart Claude
+Code / Cowork afterward.
+
+Prefer to do it by hand? Copy `.claude/skills`, `.claude/agents`, and
+`.claude/commands` into `~/.claude/`, and merge
+[`global-install/settings.snippet.json`](./global-install/settings.snippet.json)
+into `~/.claude/settings.json`.
+
+### What "global" can and can't reach
+
+| Environment | How it gets the content | Persistent? |
+|-------------|------------------------|-------------|
+| Local Claude Code (any project) | `bash global-install/install.sh` → `~/.claude/` | ✅ yes |
+| Claude Cowork (desktop) | same `~/.claude/` on that machine | ✅ yes |
+| Claude Code on the web / **dispatch** | commit `.claude/` into the repo you open (done for *this* repo) | ⚠️ per-repo only |
+
+**Important:** web/dispatch sessions run in fresh, ephemeral containers — a
+user-level `~/.claude` does **not** follow you there. The only way to get these
+skills into a web session is to have `.claude/` committed in the repo that
+session opens. This repo already has that; for another repo, copy `.claude/`
+into it too (or add this marketplace to that repo's `.claude/settings.json`).
+
+Account-level skills that appear in Cowork's skill picker are managed in the
+Claude app's settings UI — that toggle isn't a file I can set from here.
+
 ## Enabling the runtime (optional — not vendored)
 
 Ruflo's live capabilities — the MCP server, background workers, AgentDB vector
