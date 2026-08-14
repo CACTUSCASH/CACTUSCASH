@@ -96,7 +96,7 @@ Full docs: `.claude-plugin/docs/INSTALLATION.md` and https://github.com/ruvnet/r
 - Only the standalone, portable content was vendored. Ruflo's own top-level
   `settings.json`, `mcp.json`, and statusline scripts were intentionally
   omitted so they don't fail in environments without the Ruflo CLI.
-- Enabling all 35 plugins is safe without the Ruflo CLI. Only 2 of them
+- Enabling all 38 plugins is safe without the Ruflo CLI. Only 2 of them
   (`ruflo-core`, `ruflo-cost-tracker`) ship hooks, and their shim
   (`scripts/ruflo-hook.cjs`) wraps every call in try/catch and **always exits
   0**, specifically so a missing CLI never blocks a turn or surfaces an error.

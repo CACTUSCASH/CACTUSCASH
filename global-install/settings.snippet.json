@@ -43,6 +43,9 @@
     "ruflo-ruvector@ruflo": true,
     "ruflo-sparc@ruflo": true,
     "ruflo-metaharness@ruflo": true,
-    "ruflo-arena@ruflo": true
+    "ruflo-arena@ruflo": true,
+    "ruflo-agntcy@ruflo": true,
+    "ruflo-bbs-federation@ruflo": true,
+    "ruflo-business-pods@ruflo": true
   }
 }
