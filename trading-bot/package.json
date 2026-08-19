@@ -1,0 +1,23 @@
+{
+  "name": "@cactuscash/trading-bot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node src/index.js",
+    "start": "node src/index.js",
+    "dashboard": "node dashboard/server.js",
+    "bot": "node src/bot.js",
+    "flipper:connect": "node src/flipper-bridge.js",
+    "start:all": "node scripts/orchestrator.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0",
+    "express": "^4.21.0",
+    "serialport": "^12.0.0",
+    "ccxt": "^4.4.0",
+    "dotenv": "^16.4.5",
+    "pino": "^9.4.0",
+    "technicalindicators": "^3.1.0"
+  }
+}
