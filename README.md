@@ -1,8 +1,8 @@
 ### Hey — I'm Sa'ood 👋
 
 Full-stack engineer shipping production Next.js / TypeScript / WebGL applications.
-Cape Town · GMT+2 · Security-trained (Security+, PenTest+, CASP+).
-**Available for contract engagements** — 20 hrs/week, $120/hr USD.
+Cape Town · GMT+2 · Cybersecurity student at Eduvos — hands-on with Kali · Nmap · Metasploit · Wireshark.
+**Open to full-time remote roles and contract work.**
 
 ---
 
